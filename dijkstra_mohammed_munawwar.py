@@ -170,11 +170,9 @@ for row in range(canvas_width):
           It uses a priority queue to explore nodes with the lowest cost first, updating costs and parents accordingly.
           The final path and total cost are reconstructed after reaching the goal.'''
 
-# Function to get coordinates of points with a specific color
+# This function checks if a given point's coordinates match the goal coordinates.
 def check_goal(row, col):
     return (row, col) == goal
-
-# Comment: This function checks if a given point's coordinates match the goal coordinates.
 
 # Function to check if a point is valid
 def is_valid(row, col):
@@ -197,7 +195,7 @@ def possible_moves(row, col):
             valid_moves.append((new_row, new_col, cost))
     return valid_moves
 
-''' Step 4 : Here we write a dijkstra algorithm to find the shortest path between the start point and goal. '''
+'''Here we write a dijkstra algorithm to find the shortest path between the start point and goal. '''
 
 # Dijkstra's algorithm implementation
 def dijkstra(start, goal):
@@ -234,7 +232,7 @@ def dijkstra(start, goal):
 
     return path, total_cost, visited_nodes
 
-# New animate function
+# Animate function
 def animate(visited_nodes, shortest_path, start, goal, output_filename='path_animation.mp4', skip_frames=10):
     # Define the codec and create VideoWriter object
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')  # Codec used to compress the frames
@@ -285,5 +283,4 @@ while s == True and k <= 10:
     s = False
     print("The points dont go out of bounds or overlap with obstacles!")
     shortest_path, total_cost, visited_nodes = dijkstra(start, goal)
-    # print(f"Total cost of the shortest path: {total_cost}")  # Optionally print the total cost
     animate(visited_nodes, shortest_path,start,goal)
